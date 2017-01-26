@@ -13,18 +13,19 @@ export class RoutesComponent implements OnInit {
   constructor(private digitransit: DigitransitService) { }
 
   ngOnInit() {
-    this.digitransit.getRoutes('E1056')
+   /* this.digitransit.getRoutes('E1056')
         .subscribe(
           (res) => {
           this.dataInfo = res.data.stops[0].patterns;
-          console.log(res);
-          console.log(res.data.stops);
-          console.log(res.data.stops[0].name);
-          console.log(res.data.stops[0].patterns);
           }
-        );
+      );*/
 
-       
-  }
-
+      this.digitransit.getFoodFact()
+        .subscribe(
+          (res) => {
+           this.dataInfo = res.text;
+           console.log(this.dataInfo);
+          }
+      );
+    }
 }

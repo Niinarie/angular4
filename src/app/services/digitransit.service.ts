@@ -5,9 +5,16 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DigitransitService {
     private transitUrl: string = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
-
+    private foodUrl: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random';
 
   constructor(private http:Http) { }
+
+  getFoodFact = () => {
+    let headers = new Headers({ 'Accept': 'application/json', 'X-Mashape-Key': '4QehuLvcO0mshaMAE6nXERhX6id7p1lmS1rjsnVbsumPbznDZR' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this.foodUrl, options).map(resp => resp.json());
+     }
 
   getRoutes = (stopName: string) => {
     let headers = new Headers({ 'Content-Type': 'application/graphql' });
@@ -23,13 +30,6 @@ export class DigitransitService {
 }`;
 
       return this.http.post(this.transitUrl, data, options)
-      .map(resp => resp.json());
-
-      /*this.http.post(this.transitUrl, data, options).subscribe((res: Response) => {
-       const stopInfo = res.json();
-       return stopInfo;
-     }); */
-
-
+      .map(resp => resp);
   }
 }
