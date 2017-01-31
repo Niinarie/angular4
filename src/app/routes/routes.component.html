@@ -1,9 +1,9 @@
 
 
- <div *ngIf="dataInfo">
+ <div *ngIf="recipeInfo">
 
- <h2>{{dataInfo.title}}</h2> 
- <b>Preparing time: {{dataInfo.readyInMinutes}} minutes</b><br>
+ <h2>{{recipeInfo.title}}</h2> 
+ <b>Preparing time: {{recipeInfo.readyInMinutes}} minutes</b><br>
  
  <ul>
    <li><b>Ingredients:</b></li>
@@ -18,7 +18,7 @@
    <li *ngFor="let phase of instructions">{{phase.step}}</li>
  </ul>
 
-<p><a href="{{dataInfo.sourceUrl}}">Original recipe {{dataInfo.sourceName}}</a></p>
+<p><a href="{{recipeInfo.sourceUrl}}">Original recipe {{recipeInfo.sourceName}}</a></p>
 
  </div>
     
