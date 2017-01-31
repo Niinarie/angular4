@@ -1,3 +1,4 @@
+import { Response } from '@angular/http';
 import { DigitransitService } from './../services/digitransit.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,24 +9,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoutesComponent implements OnInit {
 
-  private dataInfo: any;
+  private recipeInfo: any;
+  private instructions: any;
+  private ingredients: any;
+  private summary: any;
 
   constructor(private digitransit: DigitransitService) { }
 
   ngOnInit() {
-   /* this.digitransit.getRoutes('E1056')
-        .subscribe(
-          (res) => {
-          this.dataInfo = res.data.stops[0].patterns;
-          }
-      );*/
 
-      this.digitransit.getFoodFact()
+    /*   RANDOM FOOD DACT
+        this.digitransit.getFoodFact()
         .subscribe(
           (res) => {
-           this.dataInfo = res.text;
-           console.log(this.dataInfo);
+           this.recipeInfo = res.text;
+           console.log(this.recipeInfo);
           }
+      ); */
+
+      /* RECIPE SUMMARY, NOT GOOD :(
+      this.digitransit.getRecipeSummary(621207)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        }
+      ); */
+
+      // BASIC RECIPE QUERY
+      this.digitransit.getRecipeById(841101)
+      .subscribe(
+        (res) => {
+        this.recipeInfo = res;
+        this.instructions = res.analyzedInstructions[0].steps;
+        this.ingredients = res.extendedIngredients;
+        // this.dataInfo.instructions = this.dataInfo.instructions.replace(/(    )([A-z])/g, "\n\n $2");
+        console.log(res);
+
+
+        }
       );
     }
 }

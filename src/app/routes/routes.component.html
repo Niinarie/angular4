@@ -1,12 +1,24 @@
 
 
-  <!-- <ul *ngFor="let data of dataInfo">
-        <li> <h5>{{data.name}}></h5>   
-  </ul>
-  -->
+ <div *ngIf="dataInfo">
 
-  <p>Random food fact: </p>
+ <h2>{{dataInfo.title}}</h2> 
+ <b>Preparing time: {{dataInfo.readyInMinutes}} minutes</b><br>
+ 
+ <ul>
+   <li><b>Ingredients:</b></li>
+   <li *ngFor="let foodthing of ingredients">
+    <!-- {{foodthing.originalString}} -->
+    {{foodthing.amount}} <i>{{foodthing.unit}}</i> {{foodthing.name}}
+     </li>
+ </ul>
 
-  <h3>{{dataInfo}}</h3>
+ <ul>
+   <li><b>Steps:</b></li>
+   <li *ngFor="let phase of instructions">{{phase.step}}</li>
+ </ul>
+
+<p><a href="{{dataInfo.sourceUrl}}">Original recipe {{dataInfo.sourceName}}</a></p>
+
+ </div>
     
-
